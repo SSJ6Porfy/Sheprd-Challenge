@@ -1,0 +1,74 @@
+html, body, #root, #top-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#top-container {
+    flex-direction: column;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 275px;
+    border: 1px solid#fc2092;
+    box-shadow: 1px 2px 3px #888888;
+    border-radius: 5px;
+}
+
+#form-header {
+    font-family: Tahoma;
+    color: #bc0363;
+}
+
+#main-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+}
+
+#reverse-display-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#banner {
+    font: bold;
+    font-family: Tahoma;
+    font-size: 50px;
+    width: 50%;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+#form-input {
+    width: 300px;
+    height: 30px;
+    font-size: 25px;
+    padding-left: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    border: 1px solid #fc2092;
+}
+
+#submit-btn {
+    margin-top: 30px;
+    border: 1px solid #fc2092;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background: #fc2092;
+    box-shadow: 1px 2px 3px #888888;
+    height: 40px;
+    width: 120px;
+}
+
