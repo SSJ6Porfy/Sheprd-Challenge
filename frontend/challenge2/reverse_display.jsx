@@ -6,22 +6,11 @@ class ReverseDisplay extends React.Component {
     }
 
     render() {
-        let str = this.props.display;
-        let display = "";
-
-        if (str.length > 0) {
-            // loop to reverse string
-            let length = str.length;
-
-            for (let idx = length - 1; idx >= 0; idx--) {
-                display += str[idx];
-            }
-        }
-
+        console.log(this.props);
         return (
             <div id="reverse-display-container">
                 <h1 id="banner">
-                    {display}
+                    {this.props.display}
                 </h1>
             </div>
         );
