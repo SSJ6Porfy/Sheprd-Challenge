@@ -19,11 +19,13 @@ class TopComponent extends React.Component {
     }
 
     async getZipData(code) {
+        
+        // using axios to get data from CSV
        return await axios.get('frontend/challenge2/database/free-zipcode-database-Primary.csv', {})
             .then(res => processData(res.data));
 
+        // return find row containing zip and returns lat/long  
         function processData(allText) {
-            var record_num = 12;  // or however many elements there are in each row
             var allTextLines = allText.split(/\r\n|\n/);
             var entries = allTextLines[0].split(',');
         
@@ -40,6 +42,7 @@ class TopComponent extends React.Component {
     }
 
     usZipCodeValidator(zip1, zip2) {
+        // validates that input contains 5 digits
         let validator = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
         return zip1 && zip2 && zip1.match(validator) && zip2.match(validator);
     }
@@ -48,6 +51,7 @@ class TopComponent extends React.Component {
         e.persist();
         e.preventDefault();
 
+        // reteiving inputs from form
         let zip1 = e.target.firstChild.value;
         let zip2 = e.target.children[1].value;
 
@@ -56,10 +60,11 @@ class TopComponent extends React.Component {
             let b;
 
             let call1 = await this.getZipData(zip1).then(res => { a = res });
-
             let call2 = await this.getZipData(zip2).then(res => { b = res });
 
             if ((zip1 && zip2) && (a && b)) {
+                // if 2 valid sets of coordinates are returned
+                // from the async calls then we calculate the distance
                 let distance = this.calculateDistance(a, b);
 
                 this.setState({ zipCodeOne: zip1, 
@@ -72,6 +77,7 @@ class TopComponent extends React.Component {
         } else if ((zip1 && !zip2) || (!zip1 && zip2)) {
             this.setState({ errors: "Invalid Zip Code. Please Try Again" });
         } else {
+            // clears form if both inputs are blank
             this.setState({ zipCodeOne: null, 
                             zipCodeTwo: null, 
                             errors: "",
@@ -111,7 +117,7 @@ class TopComponent extends React.Component {
 
         let d = earthRadius * c;
         
-        // in miles
+        // converts from KM to Miles
         return Math.round(d * 0.6213712);
     }
 
