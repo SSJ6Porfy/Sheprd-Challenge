@@ -18,6 +18,7 @@ class TopComponent extends React.Component {
         this.usZipCodeValidator = this.usZipCodeValidator.bind(this);
     }
 
+
     async getZipData(code) {
         
         // using axios to get data from CSV
@@ -34,6 +35,7 @@ class TopComponent extends React.Component {
             
             if (idx) {
                 let row = data[idx].split(',');
+                // return lat/long
                 return [row[5], row[6]];
             } else {
                 return null
@@ -64,7 +66,7 @@ class TopComponent extends React.Component {
                     return idx;
                 }
             }
-            return -1;
+            return null;
         }
     }
 
@@ -74,6 +76,7 @@ class TopComponent extends React.Component {
         return zip1 && zip2 && zip1.match(validator) && zip2.match(validator);
     }
 
+    // using async/await. allows for getZipData to complete search
     async handleSubmit(e) {
         e.persist();
         e.preventDefault();
@@ -107,7 +110,7 @@ class TopComponent extends React.Component {
                                 miles: null });
             }
 
-        } else if ((zip1 && !zip2) || (!zip1 && zip2)) {
+        } else if ((zip1 && !zip2) || (!zip1 && zip2) || (zip1 && zip2)) {
             // if users leave 1 zip input blank
             this.setState({ zipCodeOne: null, 
                             zipCodeTwo: null,
