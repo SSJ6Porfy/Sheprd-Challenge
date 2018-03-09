@@ -52,17 +52,25 @@ html, body, #root {
     width: 100%;
 }
 #banner {
+    display: flex;
+    align-items: center;
     font: bold;
     font-family: Tahoma;
-    font-size: 50px;
-    width: 50%;
+    font-size: 35px;
+    width: 80%;
     overflow-wrap: break-word;
     text-align: center;
+    height: 130px;
+    border: 1px solid#444D50;
+    box-shadow: 1px 2px 3px #888888;
+    border-radius: 5px;
+    color: #444d50;
+    padding: 10px;
 }
 
 .form-input {
     width: 300px;
-    height: 30px;
+    height: 32px;
     font-size: 25px;
     padding-left: 6px;
     padding-top: 3px;
@@ -83,3 +91,84 @@ html, body, #root {
     width: 120px;
 }
 
+@media only screen and (max-width: 480px) {
+
+
+    #top-container {
+        background-size: 290% 130%;
+        background-position: center 10%;
+    }
+
+    #form-header {
+        font-family: Tahoma;
+        color: #444d50;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #main-form {
+        flex-direction: column;
+    }
+
+    .form-input {
+        width: 200px;
+        height: 25px;
+        font-size: 18px;
+        margin-right: 0px;
+        margin-top: 10px;
+    }
+
+    #form-container {
+        height: 220px;
+    }
+
+    #submit-btn {
+        margin-top: 10px;
+    }
+
+    #banner {
+        font-size: 18px;
+        height: 100px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+
+    #top-container {
+        background-size: 240% 130%;
+        background-position: center 10%;
+    }
+
+    #form-header {
+        font-family: Tahoma;
+        color: #444d50;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #main-form {
+        flex-direction: column;
+    }
+
+    .form-input {
+        width: 200px;
+        height: 25px;
+        font-size: 18px;
+        margin-right: 0px;
+        margin-top: 10px;
+    }
+
+    #form-container {
+        height: 220px;
+    }
+
+    #submit-btn {
+        margin-top: 10px;
+    }
+
+    #banner {
+        font-size: 18px;
+        height: 100px;
+    }
+}
