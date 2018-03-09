@@ -15,6 +15,7 @@ class TopComponent extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getZipData = this.getZipData.bind(this);
         this.calculateDistance = this.calculateDistance.bind(this);
+        this.usZipCodeValidator = this.usZipCodeValidator.bind(this);
     }
 
     async getZipData(code) {
@@ -38,16 +39,19 @@ class TopComponent extends React.Component {
         }
     }
 
+    usZipCodeValidator(zip1, zip2) {
+        let validator = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+        return zip1 && zip2 && zip1.match(validator) && zip2.match(validator);
+    }
+
     async handleSubmit(e) {
         e.persist();
         e.preventDefault();
 
         let zip1 = e.target.firstChild.value;
         let zip2 = e.target.children[1].value;
-        let usZipCodeValidator = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 
-        if (zip1 && zip2 && (zip1.match(usZipCodeValidator) && zip2.match(usZipCodeValidator))) {
-            
+        if (this.usZipCodeValidator(zip1, zip2)) {
             let a;
             let b;
 
@@ -55,9 +59,9 @@ class TopComponent extends React.Component {
 
             let call2 = await this.getZipData(zip2).then(res => { b = res });
 
-            let distance = this.calculateDistance(a, b);
-
             if ((zip1 && zip2) && (a && b)) {
+                let distance = this.calculateDistance(a, b);
+
                 this.setState({ zipCodeOne: zip1, 
                                 zipCodeTwo: zip2, 
                                 errors: "",
@@ -78,6 +82,13 @@ class TopComponent extends React.Component {
 
 
     calculateDistance(coord1, coord2) {
+        
+        // credit for formula goes to:
+        /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+        /* Latitude/longitude spherical geodesy tools                         (c) Chris Veness 2002-2017  */
+        /*                                                                                   MIT Licence  */
+        /* www.movable-type.co.uk/scripts/latlong.html                                                    */
+        /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
         
         let earthRadius = 6371;
         
