@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './frontend/challenge1/entry.jsx',
+  entry: ['babel-polyfill','./frontend/challenge2/entry.jsx'],
   output: {
     path: path.resolve(__dirname, 'frontend', 'static'),
     filename: 'bundle.js'
@@ -18,5 +18,9 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
+  devServer: {
+    port: 8000,
+    hot: true
+  }
 };
 

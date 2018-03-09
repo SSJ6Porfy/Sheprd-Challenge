@@ -1,4 +1,4 @@
-html, body, #root, #top-container {
+html, body, #root {
     display: flex;
     height: 100%;
     width: 100%;
@@ -7,7 +7,15 @@ html, body, #root, #top-container {
 }
 
 #top-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
+    background: url(http://res.cloudinary.com/ssj6porfy/image/upload/q_auto:low/v1520543856/david-cohen-501218-unsplash_rugmrf.jpg) center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 #form-container {
@@ -15,26 +23,29 @@ html, body, #root, #top-container {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 500px;
-    height: 275px;
-    border: 1px solid#fc2092;
+    width: 80%;
+    height: 130px;
+    border: 1px solid#444D50;
     box-shadow: 1px 2px 3px #888888;
     border-radius: 5px;
+    padding: 10px 10px 30px 10px;
+    margin-top: 15px;
 }
 
 #form-header {
     font-family: Tahoma;
-    color: #bc0363;
+    color: #444d50;
+    font-size: 30px;
 }
 
 #main-form {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;    
+    flex-direction: row;
 }
 
-#reverse-display-container {
+#reverse-miles-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,7 +60,7 @@ html, body, #root, #top-container {
     text-align: center;
 }
 
-#form-input {
+.form-input {
     width: 300px;
     height: 30px;
     font-size: 25px;
@@ -57,16 +68,16 @@ html, body, #root, #top-container {
     padding-top: 3px;
     padding-bottom: 3px;
     border-radius: 5px;
-    border: 1px solid #fc2092;
+    border: 1px solid #444D50;
+    margin-right: 15px;
 }
 
 #submit-btn {
-    margin-top: 30px;
-    border: 1px solid #fc2092;
+    border: 1px solid #444D50;
     color: white;
     font-size: 18px;
     font-weight: bold;
-    background: #fc2092;
+    background: #444D50;
     box-shadow: 1px 2px 3px #888888;
     height: 40px;
     width: 120px;
