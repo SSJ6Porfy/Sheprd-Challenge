@@ -21,23 +21,50 @@ class TopComponent extends React.Component {
     async getZipData(code) {
         
         // using axios to get data from CSV
-       return await axios.get('frontend/challenge2/database/free-zipcode-database-Primary.csv', {})
-            .then(res => processData(res.data));
+       return await axios.get('frontend/challenge2/database/free-zipcode-database-Primary2.csv', {})
+            .then(res => processData(res.data, code));
 
-        // return find row containing zip and returns lat/long  
-        function processData(allText) {
-            var allTextLines = allText.split(/\r\n|\n/);
-            var entries = allTextLines[0].split(',');
-        
-            let idx = 1;
-            while (idx < allTextLines.length) {
-                let row = allTextLines[idx].split(',');
-                if (row[0] === code) {
-                    return [row[5], row[6]];
-                }
-                idx += 1;
+        // creates array of csv lines
+        async function processData(allText, code) {
+            let allTextLines = allText.split(/\r\n|\n/);
+            // remove headers
+            let data = allTextLines.slice(1);
+            
+            let idx = zipBinarySearch(data, code);
+            
+            if (idx) {
+                let row = data[idx].split(',');
+                return [row[5], row[6]];
+            } else {
+                return null
             }
-            return null;
+        }
+
+        // I ended sorting the database zip code 
+        // and implementing iterative Binary Search
+        // for 0(logn) lookup
+        function zipBinarySearch(zips, target) {
+            let start = 0;
+            let endIdx = zips.length - 1;
+            let idx;
+            let currEl;
+            target = Number(target);
+
+            while (start <= endIdx) {
+                idx = (start + endIdx) / 2 | 0;
+                currEl = Number(zips[idx].split(",")[0]);
+         
+                if (currEl < target) {
+                    start = idx + 1;
+                }
+                else if (currEl > target) {
+                    endIdx = idx - 1;
+                }
+                else {
+                    return idx;
+                }
+            }
+            return -1;
         }
     }
 
