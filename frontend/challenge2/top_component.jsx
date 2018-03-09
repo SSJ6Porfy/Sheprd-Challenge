@@ -54,28 +54,38 @@ class TopComponent extends React.Component {
         // reteiving inputs from form
         let zip1 = e.target.firstChild.value;
         let zip2 = e.target.children[1].value;
-
+        
         if (this.usZipCodeValidator(zip1, zip2)) {
-            let a;
-            let b;
+            let coord1;
+            let coord2;
+            
+            let call1 = await this.getZipData(zip1).then(res => { coord1 = res });
+            let call2 = await this.getZipData(zip2).then(res => { coord2 = res });
 
-            let call1 = await this.getZipData(zip1).then(res => { a = res });
-            let call2 = await this.getZipData(zip2).then(res => { b = res });
-
-            if ((zip1 && zip2) && (a && b)) {
+            if (coord1 && coord2) {
                 // if 2 valid sets of coordinates are returned
                 // from the async calls then we calculate the distance
-                let distance = this.calculateDistance(a, b);
-
+                let distance = this.calculateDistance(coord1, coord2);
+                
                 this.setState({ zipCodeOne: zip1, 
                                 zipCodeTwo: zip2, 
                                 errors: "",
                                 miles: distance });    
             } else {
-                this.setState({ errors: "Invalid Zip Code. Please Try Again" });
+                // if coord1 and coord2 are not true
+                // then calls failed to retreive 2 valid zips
+                this.setState({ zipCodeOne: null, 
+                                zipCodeTwo: null,
+                                errors: "Invalid Zip Code. Please Try Again",
+                                miles: null });
             }
+
         } else if ((zip1 && !zip2) || (!zip1 && zip2)) {
-            this.setState({ errors: "Invalid Zip Code. Please Try Again" });
+            // if users leave 1 zip input blank
+            this.setState({ zipCodeOne: null, 
+                            zipCodeTwo: null,
+                            errors: "Please Enter 2 Zip Codes. Please Try Again",
+                            miles: null });
         } else {
             // clears form if both inputs are blank
             this.setState({ zipCodeOne: null, 
