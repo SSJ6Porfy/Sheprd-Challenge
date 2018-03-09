@@ -36,6 +36,7 @@ html, body, #root {
     font-family: sans-serif;
     color: #444d50;
     font-size: 30px;
+    text-align: center;
 }
 
 #main-form {
@@ -172,5 +173,32 @@ html, body, #root {
     #banner {
         font-size: 18px;
         height: 100px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
+
+
+    #top-container {
+        background-size: 180% 100%;
+    }
+
+    #form-header {
+        font-family: sans-serif;
+        color: #444d50;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .form-input {
+        width: 200px;
+        height: 25px;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    #submit-btn {
+        height: 30px;
+        font-size: 18px;
     }
 }

@@ -5,7 +5,7 @@ import React from 'react';
 const FormInput = (props) => {
     return (
         <div id="form-container">
-            <h2 id="form-header">Find out the Distance bewteen to Zip Codes</h2>
+            <h2 id="form-header">Find out the Distance between to Zip Codes</h2>
             <form id="main-form" onSubmit={props.submit}>
                 <input className="form-input" 
                         type="text" placeholder="Enter Zip Code 1 Here!"
